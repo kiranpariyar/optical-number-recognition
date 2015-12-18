@@ -1,0 +1,29 @@
+.container{
+    max-width: 58.625em;
+    margin: 0px auto;
+    padding: 0px auto;
+}
+
+.options{
+    width: 21.32196162%;
+    float: left;
+/*    border: 1px solid green;*/
+    min-height: 500px;
+    
+}
+
+.canvas-element{
+    width: 74.626865672%;
+    float: left;
+/*    border: 1px solid blue;*/
+}
+
+#myCanvas{
+    border: 1px solid red;
+    margin: auto;
+}
+
+#newCanvas{
+    border: 1px solid green;
+    float: right;
+}
