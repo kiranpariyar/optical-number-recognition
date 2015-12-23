@@ -7,30 +7,44 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="main-container">
             <div class="options">
-                <input type="file" value="Load Image" id="upload-image">
+                <div class="option-button">
+                    <input type="file" value="Load Image" id="upload-image">
+                </div>
+
+                <div class="option-button">    
+                    <input type="submit" value="draw image" id="draw-image">
+                </div>
+
+                <div class="option-button">
+                    <input type="submit" value="recognize" id="recognize">
+                </div>
             </div>
             
-            <div class="canvas-element">
-                <canvas id="myCanvas" width="500" height="650"></canvas>
 
-                <canvas id="newCanvas" width="190" height="300">
-                
-                </canvas>
-            </div>
+            <div class="canvas-container">
+                <div class="canvas-element clearfix">
+                    <canvas id="myCanvas" width="824" height="300"></canvas>
+                    <canvas id="drawing" width="200" height ="200"></canvas>
+                    <canvas id="process-info" width="614" height="200"></canvas>
+                </div>
+
+                <div class="info-div">
+                </div>
+             </div>
         </div>
     
 
-        <!--
-        <script type="text/javascript" src="js/ImageLoader.js"></script>
-        <script type="text/javascript" src="js/MainClass.js"></script>
-        -->
-        
-        <script type="text/javascript" src="js/imagesegmentation.js"></script>
-        <script type="text/javascript" src="js/downsample.js"></script>
-        <script type="text/javascript" src="js/imgobjgenerator.js"></script>
-        <script type="text/javascript" src="js/start.js"></script>
+        <script type="text/javascript" src="js/BlackAndWhiteConverter.js"></script>
+        <script type="text/javascript" src="js/EuclideanDistance.js"></script>
+        <script type="text/javascript" src="js/DataRepresentor.js"></script>
+        <script type="text/javascript" src="js/ImageDataMatcher.js"></script>
+        <script type="text/javascript" src="js/ImageDownScaler.js"></script>
+        <script type="text/javascript" src="js/ImageSegmentation.js"></script>
+        <script type="text/javascript" src="js/NumberRecognizer.js"></script>
+        <script type="text/javascript" src="js/imagedownscale.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
 
     </body>
 </html>

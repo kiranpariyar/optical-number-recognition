@@ -1,21 +1,34 @@
-.container{
-    max-width: 58.625em;
+.main-container{
+    max-width: 75em;
     margin: 0px auto;
     padding: 0px auto;
 }
 
 .options{
-    width: 21.32196162%;
+    width: 15%;
     float: left;
-/*    border: 1px solid green;*/
+    border: 1px solid green;
     min-height: 500px;
     
 }
 
+.option-button{
+    padding: 10px 20px;
+}
+
+.options input{
+    width: 90px;
+}
+
+
+.canvas-container{
+    width: 84%;
+    float: right;
+}
+
 .canvas-element{
-    width: 74.626865672%;
+    width: 82%;
     float: left;
-/*    border: 1px solid blue;*/
 }
 
 #myCanvas{
@@ -23,7 +36,24 @@
     margin: auto;
 }
 
-#newCanvas{
-    border: 1px solid green;
+#drawing{
+    border: 1px solid red;
+    float: left;
+}
+
+#process-info{
+    border: 1px solid red;
+    margin: auto;
     float: right;
+}
+
+.info-div{
+    width: 17%;
+    border: 1px solid blue;
+    min-height: 500px;
+    float: right;
+}
+
+.clearfix{
+    overflow: auto;
 }
