@@ -28,7 +28,7 @@ function BlackAndWhiteConverter() {
 
 		}
 
-		// console.log("black and white imageData :",imageData);
+		// console.log('black and white imageData :',imageData);
 		// ctx.clearRect(0,0,500,650);
 		// ctx.putImageData(imageData,0,0);
 

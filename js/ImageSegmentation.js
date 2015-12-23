@@ -16,7 +16,7 @@ function ImageSegmentation() {
             var segmentWidth;
             var segmentHeight;
 
-            // console.log("colCoordinate :",colCoordinate);
+            // console.log('colCoordinate :',colCoordinate);
 
        		// loop for segmenting given image into segmented number	    
             for(var i = 0; i < colCoordinate.length; i += 2){
@@ -81,9 +81,9 @@ function ImageSegmentation() {
 	        // returns array of start and end row of segmented image number
 	        function getRowCoordinates(segmentImageData,segmentImgWidth) {
 
-	        	// console.log("segementImageData :",segmentImageData);
-	        	// console.log("segementImgWidth :",segmentImgWidth);
-	        	// console.log("imageHeight :",imageHeight);
+	        	// console.log('segementImageData :',segmentImageData);
+	        	// console.log('segementImgWidth :',segmentImgWidth);
+	        	// console.log('imageHeight :',imageHeight);
 	        	
 	        	var rowCoordinates = [];
 	        	var red;
@@ -124,7 +124,7 @@ function ImageSegmentation() {
 		            }   
 	           	}
 				
-				// console.log("rowCoordinates :",rowCoordinates);
+				// console.log('rowCoordinates :',rowCoordinates);
 	        	return rowCoordinates;
        		}
 
