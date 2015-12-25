@@ -18,6 +18,7 @@ function ImageSegmentation() {
 
             // console.log('colCoordinate :',colCoordinate);
 
+            
        		// loop for segmenting given image into segmented number	    
             for(var i = 0; i < colCoordinate.length; i += 2){
             	startX = colCoordinate[i];
@@ -33,7 +34,7 @@ function ImageSegmentation() {
 				segmentedImageData = ctx.getImageData(startX,startY,segmentWidth,segmentHeight);
 				segmentedImageDataArray.push(segmentedImageData);
             }
-		
+			
             // returns array of start and end column of image number
             function getColumnCoordinates() {
 
@@ -63,6 +64,11 @@ function ImageSegmentation() {
 	                        endingFlag = 0;
 	                        column++;
 	                        row = 0;
+	                        if(column >= imageWidth){
+	                			columnCoordinates.push(column);
+	                			startingFlag = 0;
+	                			break;
+	                		}
 	                    }
 	                }
 	                
@@ -71,7 +77,6 @@ function ImageSegmentation() {
 	                    startingFlag = 0;
 	                    endingFlag = 0;
 	                }
-	              	
 	            }
 
 
@@ -103,25 +108,32 @@ function ImageSegmentation() {
 
 		            	if(red != 255 && green != 255 && blue != 255 && startingFlag == 0){
 		            		rowCoordinates.push(row);
+		            		// console.log("staring row:",row);
 		            		startingFlag = 1;
 		            		row ++;
 		            		column = 0;
 		            	}else if(red == 255 && green == 255 & blue == 255 && startingFlag == 1){
 		            		endingFlag = 1;
-		            	}else if( startingFlag == 1){
+		            	}else if(startingFlag == 1){
 		            		endingFlag = 0;
 		            		column = 0;
 		            		row ++;
+
+		            		if(row >= imageHeight){
+				            	rowCoordinates.push(row);
+				            	// console.log("row",row);
+				            	startingFlag = 0;
+				            	break;
+				            }
 		            	}
 		            }
 
 		            if(endingFlag == 1){
 		            	rowCoordinates.push(row);
-		            	// console.log()
 		            	startingFlag = 0;
 		            	endingFlag = 0;
 		            	break;
-		            }   
+		            }
 	           	}
 				
 				// console.log('rowCoordinates :',rowCoordinates);
