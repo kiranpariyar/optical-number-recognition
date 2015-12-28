@@ -7,31 +7,47 @@
     </head>
 
     <body>
-        <div class="main-container">
-            <div class="options">
-                <div class="option-button">
-                    <input type="file" value="Load Image" id="upload-image">
-                </div>
-
-                <div class="option-button">    
-                    <input type="submit" value="draw image" id="draw-image">
-                </div>
-
-                <div class="option-button">
-                    <input type="submit" value="recognize" id="recognize">
-                </div>
-            </div>
+        <div class="container">
             
+            <div class="header">
+                <div class="header-content">
+                    <h2> Welcome in <strong>OPTICAL NUMBER RECOGNITION</strong> Demo</h2>   
+                 </div>   
+            </div>
 
-            <div class="canvas-container">
-                <div class="canvas-element clearfix">
-                    <canvas id="myCanvas" width="824" height="300"></canvas>
-                    <canvas id="process-info" width="824" height="200"></canvas>
-                </div>
+            <div class="main-container">
+                <div class="main-content">
+                    <div class="options">
+                        <div class="option-button">
+                            <input type="file" value="Load Image" id="upload-image">
+                        </div>
 
-                <div class="info-div">
-                </div>
-             </div>
+                        <div class="option-button">    
+                            <input type="submit" value="draw image" id="draw-image">
+                        </div>
+
+                        <div class="option-button">
+                            <input type="submit" value="recognize" id="recognize">
+                        </div>
+                    </div>
+                    
+                    <div class="canvas-container">
+                        <div class="canvas-element clearfix">
+                            <div class="canvas-heading"><h2>Upload File OR Write Here</h2></div>
+                            <canvas id="main-canvas" width="742" height="300"></canvas>
+                            <div class="process-info-heading"><h2>Scale Down Image</h2></div>
+                            <canvas id="process-info" width="742" height="150"></canvas>
+                        </div>
+
+                        <div class="info-div">
+                            <h2>Number is </h2>
+                            <div class="recognized-number">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>     
+            </div>
         </div>
 
         <script type="text/javascript" src="js/ImageDrawing.js"></script>

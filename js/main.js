@@ -6,7 +6,7 @@ console.log("template data :",numbers);
 var uploadImage = document.getElementById("upload-image");
 uploadImage.addEventListener('change', loadImage, false);
 
-var myCanvas = document.getElementById('myCanvas'); 
+var myCanvas = document.getElementById('main-canvas'); 
 var context = myCanvas.getContext('2d');  
 
 function loadImage() {
@@ -30,8 +30,8 @@ function loadImage() {
         var imageData = context.getImageData(0,0,imageWidth,imageHeight);
         var numberRecognizer = new NumberRecognizer();
         var recognizedNumber = numberRecognizer.recognizeNumber(imageData);
-        var infoDiv = document.getElementsByClassName('info-div')[0];
-        infoDiv.innerHTML = " Number is: " + recognizedNumber;
+        var infoDiv = document.getElementsByClassName('recognized-number')[0];
+        infoDiv.innerHTML = recognizedNumber;
     }
 }
 
@@ -75,7 +75,7 @@ function recognize() {
     var numberRecognizer = new NumberRecognizer();
     var drawingImageData = context.getImageData(0,0,myCanvas.width,myCanvas.height);
     var recognizedNumber = numberRecognizer.recognizeNumber(drawingImageData);
-    var infoDiv = document.getElementsByClassName('info-div')[0];
-    infoDiv.innerHTML = " Number is: " + recognizedNumber;
+    var infoDiv = document.getElementsByClassName('recognized-number')[0];
+    infoDiv.innerHTML = recognizedNumber;
 
 }

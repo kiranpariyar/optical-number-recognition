@@ -34,6 +34,10 @@ function NumberRecognizer() {
             
         }
         
+        if(recognizedNumber.length == 0){
+            recognizedNumber = ['unknown']
+        }
+
         console.log('recognizedNumber is :',recognizedNumber);
 		
         return recognizedNumber;	

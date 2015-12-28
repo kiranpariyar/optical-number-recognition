@@ -1,25 +1,59 @@
+body{
+    background-color: #DCE9E9;
+}
+
+.container{
+    width: 100%;
+    margin: 0px auto;
+    padding: 0px auto;
+}
+
+
 .main-container{
     max-width: 75em;
     margin: 0px auto;
     padding: 0px auto;
 }
 
+.header{
+    max-width: 75em;
+    margin: 0px auto;
+    padding: 0px auto;
+}
+
+.header-content{
+    padding: 25px;
+    background: rgb(255, 245, 211);
+    border: 1px solid #E5E5E5;
+}
+
+.header-content strong{
+    font-weight: bold;
+}
+
+
+.main-content{
+    width: 100%;
+    margin: auto;
+    padding-top: 15px;
+}
+
 .options{
-    width: 15%;
+    width: 12%;
     float: left;
-    border: 1px solid green;
     min-height: 500px;
-    
+    padding: 15px;
+    background: rgb(255, 245, 211);
+    border: 1px solid #E5E5E5;
 }
 
 .option-button{
-    padding: 10px 20px;
+    padding: 10px 0px;
 }
 
 .options input{
     width: 90px;
 }
-
 
 .canvas-container{
     width: 84%;
@@ -27,31 +61,44 @@
 }
 
 .canvas-element{
-    width: 82%;
+    width: 74%;
     float: left;
+    background: rgb(255, 245, 211);
+    border: 1px solid #E5E5E5;
+    padding: 0px 15px 15px 15px; 
+    /*box-shadow: 0px 0px 35px rgba(0,0,0,0.2);*/
 }
 
-#myCanvas{
-    border: 1px solid red;
+.canvas-heading{
+    padding: 10px 0px;
+}
+
+#main-canvas{
+    border: 1px solid #ccc;
     margin: auto;
+    background-color: #FFFFFF;
 }
 
-#drawing{
-    border: 1px solid red;
-    float: left;
+.process-info-heading{
+    padding: 10px 0px;
 }
+
 
 #process-info{
-    border: 1px solid red;
+    border: 1px solid #ccc;
     margin: auto;
-    float: right;
+    float: left;
+    background-color: #FFFFFF;
 }
 
 .info-div{
-    width: 17%;
-    border: 1px solid blue;
+    width: 18%;
+    /*border: 1px solid blue;*/
     min-height: 500px;
     float: right;
+    padding: 15px;
+    background: rgb(255, 245, 211);
+    border: 1px solid #E5E5E5;
 }
 
 .clearfix{
