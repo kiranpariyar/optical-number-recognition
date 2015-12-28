@@ -1,8 +1,13 @@
+/*
+var templateDataGenerator = new TemplateDataGenerator();
+var numbers = templateDataGenerator.getTemplateData();
+console.log("template data :",numbers);
+*/
 var uploadImage = document.getElementById("upload-image");
 uploadImage.addEventListener('change', loadImage, false);
-  
-myCanvas = document.getElementById('myCanvas'); 
-context = myCanvas.getContext('2d');  
+
+var myCanvas = document.getElementById('myCanvas'); 
+var context = myCanvas.getContext('2d');  
 
 function loadImage() {
     
@@ -19,46 +24,46 @@ function loadImage() {
         context.clearRect(0, 0, myCanvas.width, myCanvas.height);
         context.drawImage(img, 0, 0);
         var imageWidth = img.naturalWidth;
-        var imageHeight = img.naturalHeight;   
+        var imageHeight = img.naturalHeight;
+        console.log("imageWidth :",imageWidth);
+        console.log("imageHeight :",imageHeight);
+        var imageData = context.getImageData(0,0,imageWidth,imageHeight);
         var numberRecognizer = new NumberRecognizer();
-        var recognizedNumber = numberRecognizer.recognizeNumber(context,imageWidth,imageHeight);
+        var recognizedNumber = numberRecognizer.recognizeNumber(imageData);
         var infoDiv = document.getElementsByClassName('info-div')[0];
         infoDiv.innerHTML = " Number is: " + recognizedNumber;
     }
 }
 
-var drawCanvas = document.getElementById("drawing");
-var drawContext = drawCanvas.getContext("2d");
-
 var drawImage = document.getElementById("draw-image");
-var drawFlag = false;
 drawImage.addEventListener('click', draw, false);
-
+var drawFlag = false;
 
 
 function draw(){
+    context.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    context.fillStyle = 'white';
+    context.fillRect(0,0,myCanvas.width, myCanvas.height);
+
     drawFlag = true;
     console.log('called');
-    drawContext.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
-    console.log(drawContext);
-}
+    var mousedown = false;
 
-var mousedown = false;
+    myCanvas.onmousedown = function(){
+        mousedown = true;
+    };
 
-drawCanvas.onmousedown = function(){
-    mousedown = true;
-};
+    myCanvas.onmouseup = function(){
+        mousedown = false;
+    }
 
-drawCanvas.onmouseup = function(){
-    mousedown = false;
-}
-
-drawCanvas.onmousemove = function(){
-    if(mousedown && drawFlag){
-        var x = event.pageX - drawCanvas.offsetLeft;
-        var y = event.pageY - drawCanvas.offsetTop;
-        drawContext.fillStyle = 'black';
-        drawContext.fillRect(x,y,10,10);
+    myCanvas.onmousemove = function(){
+        if(mousedown && drawFlag){
+            var x = event.pageX - myCanvas.offsetLeft;
+            var y = event.pageY - myCanvas.offsetTop;
+            context.fillStyle = 'black';
+            context.fillRect(x,y,15,15);
+        }
     }
 }
 
@@ -68,8 +73,9 @@ recognizeNumber.addEventListener('click', recognize, false);
 function recognize() {
 
     var numberRecognizer = new NumberRecognizer();
-    console.log('here is context',drawContext)
-    var recognizedNumber = numberRecognizer.recognizeNumber(drawContext,drawCanvas.width,drawCanvas.height);
+    var drawingImageData = context.getImageData(0,0,myCanvas.width,myCanvas.height);
+    var recognizedNumber = numberRecognizer.recognizeNumber(drawingImageData);
     var infoDiv = document.getElementsByClassName('info-div')[0];
     infoDiv.innerHTML = " Number is: " + recognizedNumber;
+
 }

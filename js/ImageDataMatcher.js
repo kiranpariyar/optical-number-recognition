@@ -1,5 +1,12 @@
 function ImageDataMatcher() {
 
+    var numbers;
+
+    this.setNumbers = function(templateData){
+        numbers = templateData;
+    }
+
+
     this.getPercentageMatched = function(dataNumber,sourceData) {
         
         var numbers = { 
@@ -17,7 +24,7 @@ function ImageDataMatcher() {
             '9' : [[-1,1,1,1,-1, 1,-1,-1,1,1, 1,-1,-1,-1,1, 1,-1,-1,-1,1, -1,1,1,1,1, -1,-1,-1,-1,1, -1,-1,-1,1,-1, 1,1,1,1,-1]]
         };
 
-        var totalPixel = 40;
+        var totalPixel = 5*8;
         var percentageMatchedObject = {};
 
         for(var number in numbers){

@@ -1,57 +1,37 @@
 function NumberRecognizer() {
-	
+    
+    var imageToBinary = new ImageToBinaryConversion();
+    var recognizedNumber = [];  
 
-	this.recognizeNumber = function(ctx,imageWidth,imageHeight) {
-		var recognizedNumber;
-
-	    var imageData = ctx.getImageData(0,0,imageWidth,imageHeight);
-        console.log('initial imageData :',imageData);
-
+	this.recognizeNumber = function(imageData) {
         
-        var blackAndWhiteConverter = new BlackAndWhiteConverter();
-        var blackAndWhiteImageData = blackAndWhiteConverter.convertIntoBlackAndWhite(imageData);
-        console.log('blackAndWhiteImageData :',blackAndWhiteImageData);
-        ctx.putImageData(blackAndWhiteImageData,0,0);
-
-   
-        var segmentor = new ImageSegmentation();
-        // // var segmentedImageDataArray = segmentor.segmentImage(ctx,imageData);
-        var segmentedImageDataArray = segmentor.segmentImage(ctx,blackAndWhiteImageData);
-        console.log('segmented image Data array :',segmentedImageDataArray);
-
-
-        // var imageDownScale = new ImageDownScale();
-        // imageDownScale.downscale(imageData);
-        // imageDownScale.averageFilter(imageData);
-        
-        var imgDownScaler = new ImageDownScaler();
-        var scaleDownDataArray = [];
-        var scaleDownImage;
-
-        for (var i = 0; i < segmentedImageDataArray.length; i++) {
-            scaleDownImage = imgDownScaler.getScaleDownImageData(i,ctx,segmentedImageDataArray[i]);
-            var blackAndWhiteScaleDown = blackAndWhiteConverter.convertIntoBlackAndWhite(scaleDownImage);
-            // scaleDownDataArray.push(scaleDownImage);
-            scaleDownDataArray.push(blackAndWhiteScaleDown);
-            // imageDownScale.averageFilter(segmentedImageDataArray[i]);
-        }
-
-        
-        console.log('scaleDownDataArray :',scaleDownDataArray);
-
-        
-        var dataRepresentor = new DataRepresentor();
-        var binaryDataArray = [];     
-
-        for (var i = 0; i < scaleDownDataArray.length; i++) {
-                binaryDataArray.push(dataRepresentor.representImageData(scaleDownDataArray[i]));
-        };
-
-        console.log('binaryDataArray :',binaryDataArray);
         var imageDataMatcher = new ImageDataMatcher();
-        recognizedNumber = imageDataMatcher.matchWithStoredImage(binaryDataArray);
+        // imageDataMatcher.setNumbers(numbers);
+        var binaryDataArray = imageToBinary.convertImageToBinary(imageData);
+
         for (var i = 0; i < binaryDataArray.length; i++) {
-            imageDataMatcher.getPercentageMatched(i,binaryDataArray[i]);    
+
+            var percentageMatchedObject = imageDataMatcher.getPercentageMatched(i,binaryDataArray[i]);
+            var matchedNumber = {};
+            var alternativeMatched = {};    
+            var keysSorted = Object.keys(percentageMatchedObject).sort(function(a,b){
+                                return percentageMatchedObject[b]-percentageMatchedObject[a]});
+
+            // console.log(keysSorted);
+            var maxPercentage = percentageMatchedObject[keysSorted[0]];
+            matchedNumber[keysSorted[0]] = maxPercentage;
+            var secondMaxPercentage = percentageMatchedObject[keysSorted[1]];
+            alternativeMatched[keysSorted[1]] = secondMaxPercentage;
+            console.log('matched number :',matchedNumber);
+            console.log('second matched :',alternativeMatched);
+            console.log('******');
+
+            if(maxPercentage >= 70){
+                recognizedNumber.push(parseInt(Object.keys(matchedNumber)));
+            }else{
+                recognizedNumber.push('unknown');
+            }
+            
         }
         
         console.log('recognizedNumber is :',recognizedNumber);

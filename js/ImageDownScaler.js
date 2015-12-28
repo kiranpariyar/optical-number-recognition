@@ -1,6 +1,6 @@
 function ImageDownScaler() {
 	
-	this.getScaleDownImageData = function (number,ctx,imageData){
+	this.getScaleDownImageData = function (number,imageData){
 
 		var canvas = document.createElement('canvas');
 		var context = canvas.getContext('2d');  
@@ -14,11 +14,10 @@ function ImageDownScaler() {
 		img.height = 8;
 		context.drawImage(img,0,0,img.width,img.height);
 		var scaledownImageData = context.getImageData(0,0,img.width,img.height);
-		var newCanvas = document.getElementById('process-info');
-		var newCanvasCtx = newCanvas.getContext('2d');
-		// console.log('scaledownImageData :',scaledownImageData);
-		newCanvasCtx.drawImage(img,20*(number + 1),20,img.width,img.height);
-
+		// var canvasElement = document.getElementsByClassName('canvas-element')[0];
+        // canvasElement.appendChild(canvas);
+		var imageDrawing = new ImageDrawing();
+		imageDrawing.drawImage(number,scaledownImageData);
 		return scaledownImageData;
 	}
 }
