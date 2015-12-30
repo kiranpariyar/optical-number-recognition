@@ -6,18 +6,16 @@ function NumberRecognizer() {
 	this.recognizeNumber = function(imageData) {
         
         var imageDataMatcher = new ImageDataMatcher();
-        // imageDataMatcher.setNumbers(numbers);
-        var binaryDataArray = imageToBinary.convertImageToBinary(imageData);
+        var binaryDataOfImageNumbers = imageToBinary.convertImageToBinary(imageData);
 
-        for (var i = 0; i < binaryDataArray.length; i++) {
+        for (var i = 0; i < binaryDataOfImageNumbers.length; i++) {
 
-            var percentageMatchedObject = imageDataMatcher.getPercentageMatched(i,binaryDataArray[i]);
+            var percentageMatchedObject = imageDataMatcher.getPercentageMatched(binaryDataOfImageNumbers[i]);
             var matchedNumber = {};
             var alternativeMatched = {};    
             var keysSorted = Object.keys(percentageMatchedObject).sort(function(a,b){
                                 return percentageMatchedObject[b]-percentageMatchedObject[a]});
 
-            // console.log(keysSorted);
             var maxPercentage = percentageMatchedObject[keysSorted[0]];
             matchedNumber[keysSorted[0]] = maxPercentage;
             var secondMaxPercentage = percentageMatchedObject[keysSorted[1]];

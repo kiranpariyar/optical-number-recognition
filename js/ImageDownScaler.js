@@ -16,8 +16,8 @@ function ImageDownScaler() {
 		var scaledownImageData = context.getImageData(0,0,img.width,img.height);
 		// var canvasElement = document.getElementsByClassName('canvas-element')[0];
         // canvasElement.appendChild(canvas);
-		var imageDrawing = new ImageDrawing();
-		imageDrawing.drawImage(number,scaledownImageData);
+		var imageRenderer = new ImageDataRenderer();
+		imageRenderer.renderImageData(number,scaledownImageData);
 		return scaledownImageData;
 	}
 }

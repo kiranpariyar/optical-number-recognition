@@ -1,10 +1,17 @@
 function DataRepresentor() {
-	
+
+
+	/*
+	 *	represents 40 pixel image data in binary
+	 *	with 1 for black and -1 for white
+	 *	
+	 */
+
 	this.representImageData = function(imageData) {
 
 	    var data = imageData.data;
-	    var binaryArray = [];
-	    var binaryArrayIndex = 0;
+	    var binaryDataArray = [];
+	    var arrayIndex = 0;
 	    var red;
 	    var green;
 	    var blue;
@@ -16,14 +23,14 @@ function DataRepresentor() {
             blue = data[i+2];
 
             if(red == 255 && green == 255 && blue == 255){
-                binaryArray[binaryArrayIndex] = -1;
+                binaryDataArray[arrayIndex] = -1;
             }else{
-                binaryArray[binaryArrayIndex] = 1;
+                binaryDataArray[arrayIndex] = 1;
             }
 
-            binaryArrayIndex++;
+            arrayIndex++;
 	    }
 	    
-	    return binaryArray;
+	    return binaryDataArray;
 	}
 }

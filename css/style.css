@@ -24,7 +24,7 @@ body{
 .header-content{
     padding: 25px;
     background: rgb(255, 245, 211);
-    border: 1px solid #E5E5E5;
+    border: 1px solid #CCCCCC;
 }
 
 .header-content strong{
@@ -44,12 +44,28 @@ body{
     min-height: 500px;
     padding: 15px;
     background: rgb(255, 245, 211);
-    border: 1px solid #E5E5E5;
+    border: 1px solid #CCCCCC;
 }
+
 
 .option-button{
     padding: 10px 0px;
 }
+
+.option-button button{
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(55, 174, 204);
+    color: rgb(255, 255, 255);
+    min-width: 100px;
+    height: 35px;
+    font-size: 16px;
+}
+
+.option-button button:hover{
+    background-color: rgb(55, 174, 255);
+}
+
 
 .options input{
     width: 90px;
@@ -64,9 +80,9 @@ body{
     width: 74%;
     float: left;
     background: rgb(255, 245, 211);
-    border: 1px solid #E5E5E5;
+    border: 1px solid #CCCCCC;
     padding: 0px 15px 15px 15px; 
-    /*box-shadow: 0px 0px 35px rgba(0,0,0,0.2);*/
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
 }
 
 .canvas-heading{
@@ -74,7 +90,7 @@ body{
 }
 
 #main-canvas{
-    border: 1px solid #ccc;
+    border: 1px solid #CCCCCC;
     margin: auto;
     background-color: #FFFFFF;
 }
@@ -85,7 +101,7 @@ body{
 
 
 #process-info{
-    border: 1px solid #ccc;
+    border: 1px solid #CCCCCC;
     margin: auto;
     float: left;
     background-color: #FFFFFF;
@@ -98,7 +114,7 @@ body{
     float: right;
     padding: 15px;
     background: rgb(255, 245, 211);
-    border: 1px solid #E5E5E5;
+    border: 1px solid #CCCCCC;
 }
 
 .clearfix{

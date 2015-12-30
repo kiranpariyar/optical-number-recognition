@@ -1,6 +1,6 @@
-function ImageDrawing() {
+function ImageDataRenderer() {
 
-	this.drawImage = function(number,imageData) {
+	this.renderImageData = function(number,imageData) {
 
 		var newCanvas = document.getElementById('process-info');
 		var newCanvasCtx = newCanvas.getContext('2d');

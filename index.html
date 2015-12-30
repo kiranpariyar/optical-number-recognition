@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>  
-        <title>OCR</title>
+        <title>ONR</title>
         <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
@@ -18,22 +18,24 @@
             <div class="main-container">
                 <div class="main-content">
                     <div class="options">
+
+                        <!-- <p>Upload Image File</p> -->
                         <div class="option-button">
                             <input type="file" value="Load Image" id="upload-image">
                         </div>
 
                         <div class="option-button">    
-                            <input type="submit" value="draw image" id="draw-image">
+                            <button type="submit" id="draw-image">draw image</button>
                         </div>
 
                         <div class="option-button">
-                            <input type="submit" value="recognize" id="recognize">
+                            <button type="submit" id="recognize">recognize</button>
                         </div>
                     </div>
                     
                     <div class="canvas-container">
                         <div class="canvas-element clearfix">
-                            <div class="canvas-heading"><h2>Upload File OR Write Here</h2></div>
+                            <div class="canvas-heading"><h2>Upload Image File OR Write Here</h2></div>
                             <canvas id="main-canvas" width="742" height="300"></canvas>
                             <div class="process-info-heading"><h2>Scale Down Image</h2></div>
                             <canvas id="process-info" width="742" height="150"></canvas>
@@ -50,14 +52,13 @@
             </div>
         </div>
 
-        <script type="text/javascript" src="js/ImageDrawing.js"></script>
+        <script type="text/javascript" src="js/ImageDataRenderer.js"></script>
         <script type="text/javascript" src="js/BlackAndWhiteConverter.js"></script>
         <script type="text/javascript" src="js/ImageSegmentation.js"></script>
         <script type="text/javascript" src="js/HeightByWidthRatioFilter.js"></script>
         <script type="text/javascript" src="js/ImageDownScaler.js"></script>
         <script type="text/javascript" src="js/DataRepresentor.js"></script>
         <script type="text/javascript" src="js/ImageToBinaryConversion.js"></script>
-        <!-- // <script type="text/javascript" src="js/TemplateDataGenerator.js"></script> -->
         <script type="text/javascript" src="js/ImageDataMatcher.js"></script>
         <script type="text/javascript" src="js/NumberRecognizer.js"></script>
         <script type="text/javascript" src="js/main.js"></script>

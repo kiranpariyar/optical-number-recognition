@@ -1,15 +1,20 @@
 function ImageDataMatcher() {
 
     var numbers;
+    var totalPixel = 40;
 
     this.setNumbers = function(templateData){
         numbers = templateData;
     }
 
+    this.setTotalPixel = function(noOfPixel){
+        totalPixel = noOfPixel;
+    }
 
-    this.getPercentageMatched = function(dataNumber,sourceData) {
+
+    this.getPercentageMatched = function(sourceData) {
         
-        var numbers = { 
+        numbers = { 
             '0' : [[-1,1,1,1,-1, 1,1,-1,1,1, 1,-1,-1,-1,1, 1,-1,-1,-1,1, 1,-1,-1,-1,1 ,1,-1,-1,-1,1, 1,1,-1,1,1, -1,1,1,1,-1]],
             '1' : [[-1,1,1,-1,-1, 1,-1,1,-1,-1, -1,-1,1,-1,-1, -1,-1,1,-1,-1, -1,-1,1,-1,-1, -1,-1,1,-1,-1, -1,-1,1,-1,-1, 1,1,1,1,1],
                    [-1,1,1,1,1, -1,-1,-1,1,1, -1,-1,-1,1,1, -1,-1,-1,1,1, -1,-1,-1,1,1, -1,-1,-1,1,1, -1,-1,-1,1,1, -1,-1,-1,1,1]],
@@ -24,8 +29,7 @@ function ImageDataMatcher() {
             '9' : [[-1,1,1,1,-1, 1,-1,-1,1,1, 1,-1,-1,-1,1, 1,-1,-1,-1,1, -1,1,1,1,1, -1,-1,-1,-1,1, -1,-1,-1,1,-1, 1,1,1,1,-1]]
         };
 
-        var totalPixel = 5*8;
-        var percentageMatchedObject = {};
+        var percentMatchedWithAllNumbers = {};
 
         for(var number in numbers){
 
@@ -51,11 +55,11 @@ function ImageDataMatcher() {
             }
 
             percentageMatchedArray.sort(function(a,b){return b-a});  
-            percentageMatchedObject[number] = percentageMatchedArray[0];
+            percentMatchedWithAllNumbers[number] = percentageMatchedArray[0];
         }
         
-        console.log('matched percentage :',percentageMatchedObject);
-        return percentageMatchedObject;
+        console.log('matched percentage :',percentMatchedWithAllNumbers);
+        return percentMatchedWithAllNumbers;
     }
 
 }
