@@ -5,7 +5,7 @@ function ImageToBinaryConversion() {
     var heightByWidthRatioFilter = new HeightByWidthRatioFilter();
     var imageDownScaler = new ImageDownScaler();
     var dataRepresentor = new DataRepresentor();
-    var imageRenderer = new ImageDataRenderer();
+    // var imageRenderer = new ImageDataRenderer();
 
 
 	this.convertImageToBinary = function(imageData){

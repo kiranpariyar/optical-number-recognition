@@ -30,7 +30,7 @@ function NumberRecognizer() {
             console.log('matched number :',matchedNumber);
             console.log('second matched :',secondMatched);
 
-            if(maxPercentage >= 70){
+            if(maxPercentage >= 55){
                 recognizedNumber.push(parseInt(Object.keys(matchedNumber)));
             }else{
                 recognizedNumber.push('unknown');
