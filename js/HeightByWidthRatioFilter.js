@@ -1,6 +1,6 @@
 function HeightByWidthRatioFilter() {
 
-	var mininumRatio = 1;
+	var mininumRatio = 0.5;
 	var maximunRatio = 8;
 
 
@@ -16,7 +16,7 @@ function HeightByWidthRatioFilter() {
 
 	this.filter = function(segmentedImageDataArray) {
 
-		console.log('before splicing :',segmentedImageDataArray);		
+		console.log('before filter :',segmentedImageDataArray);		
 		
 		var width;
 		var height;
@@ -25,15 +25,15 @@ function HeightByWidthRatioFilter() {
 
 			width = segmentedImageDataArray[i].width;
 			height = segmentedImageDataArray[i].height;
-
-			ratio = height/width;
+			ratio = parseFloat(height)/width;
+			console.log("height by width ratio :",ratio);
 
 			if(!(ratio > mininumRatio && ratio < maximunRatio)){
 				segmentedImageDataArray.splice(i,1);	
 			}
 		}
 
-		console.log('after splicing :',segmentedImageDataArray);
+		console.log('after filter :',segmentedImageDataArray);
 
 		return segmentedImageDataArray;
 	}

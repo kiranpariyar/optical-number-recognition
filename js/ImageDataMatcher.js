@@ -11,7 +11,6 @@ function ImageDataMatcher() {
         totalPixel = noOfPixel;
     }
 
-
     this.getPercentageMatched = function(sourceData) {
         
         numbers = { 

@@ -1,13 +1,13 @@
 function ImageSegmentation() {
 
-	this.segmentImage = function(ctx,imageData) {
-
+	this.segmentImageToSingleCharacter = function(ctx,imageData) {
+		
+			var data = imageData.data;
 			var imageHeight = imageData.height;
 			var imageWidth = imageData.width;
-			var data = imageData.data;
 			var segmentedImageDataArray = []
-            var colCoordinate = getColumnCoordinates();
-            var rowCoordinate = [];
+            var columnCoordinateArray = [];
+            var rowCoordinateArray = [];
             var columnSegementedData;
             var startX;
             var endX;
@@ -16,18 +16,18 @@ function ImageSegmentation() {
             var segmentWidth;
             var segmentHeight;
 
-            // console.log('colCoordinate :',colCoordinate);
+            columnCoordinateArray = getColumnCoordinates();
+       		
+       		// loop for segmenting given image into segmented number	
 
-            
-       		// loop for segmenting given image into segmented number	    
-            for(var i = 0; i < colCoordinate.length; i += 2){
-            	startX = colCoordinate[i];
-	            endX = colCoordinate[i+1];
+            for(var i = 0; i < columnCoordinateArray.length; i += 2){
+            	startX = columnCoordinateArray[i];
+	            endX = columnCoordinateArray[i+1];
     	        segmentWidth = endX - startX;
 				columnSegmentedData = ctx.getImageData(startX,0,segmentWidth,imageHeight);
 				var row = getRowCoordinates(columnSegmentedData,segmentWidth);
-				rowCoordinate.push(row[0]);
-				rowCoordinate.push(row[1]);
+				rowCoordinateArray.push(row[0]);
+				rowCoordinateArray.push(row[1]);
 				startY = row[0];
 				endY = row[1];
 				segmentHeight = endY - startY;
@@ -35,7 +35,7 @@ function ImageSegmentation() {
 				segmentedImageDataArray.push(segmentedImageData);
             }
 			
-            // returns array of start and end column of image number
+            // returns array of start and end column of all characters in image
             function getColumnCoordinates() {
 
             	var columnCoordinates = [];
@@ -83,14 +83,10 @@ function ImageSegmentation() {
 	            return columnCoordinates;
 	        }    
 
-	        // returns array of start and end row of segmented image number
+	        // returns array of start and end row of segmented image character
 	        function getRowCoordinates(segmentImageData,segmentImgWidth) {
-
-	        	// console.log('segementImageData :',segmentImageData);
-	        	// console.log('segementImgWidth :',segmentImgWidth);
-	        	// console.log('imageHeight :',imageHeight);
 	        	
-	        	var rowCoordinates = [];
+	        	var rowCoordinate = [];
 	        	var red;
             	var green;
             	var blue;
@@ -107,8 +103,7 @@ function ImageSegmentation() {
 													            	
 
 		            	if(red != 255 && green != 255 && blue != 255 && startingFlag == 0){
-		            		rowCoordinates.push(row);
-		            		// console.log("staring row:",row);
+		            		rowCoordinate.push(row);
 		            		startingFlag = 1;
 		            		row ++;
 		            		column = 0;
@@ -120,8 +115,7 @@ function ImageSegmentation() {
 		            		row ++;
 
 		            		if(row >= imageHeight){
-				            	rowCoordinates.push(row);
-				            	// console.log("row",row);
+				            	rowCoordinate.push(row);
 				            	startingFlag = 0;
 				            	break;
 				            }
@@ -129,15 +123,14 @@ function ImageSegmentation() {
 		            }
 
 		            if(endingFlag == 1){
-		            	rowCoordinates.push(row);
+		            	rowCoordinate.push(row);
 		            	startingFlag = 0;
 		            	endingFlag = 0;
 		            	break;
 		            }
 	           	}
 				
-				// console.log('rowCoordinates :',rowCoordinates);
-	        	return rowCoordinates;
+	        	return rowCoordinate;
        		}
 
        		return segmentedImageDataArray;    

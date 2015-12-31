@@ -1,28 +1,34 @@
 function NumberRecognizer() {
     
     var imageToBinary = new ImageToBinaryConversion();
+    var imageDataMatcher = new ImageDataMatcher();
     var recognizedNumber = [];  
 
 	this.recognizeNumber = function(imageData) {
         
-        var imageDataMatcher = new ImageDataMatcher();
         var binaryDataOfImageNumbers = imageToBinary.convertImageToBinary(imageData);
+        var percentageMatchedWithAllNumbers;
+        var matchedNumber;
+        var secondMatched;
+        var allNumber;
+        var maxPercentage;
+        var secondMaxPercentage;
 
         for (var i = 0; i < binaryDataOfImageNumbers.length; i++) {
 
-            var percentageMatchedObject = imageDataMatcher.getPercentageMatched(binaryDataOfImageNumbers[i]);
-            var matchedNumber = {};
-            var alternativeMatched = {};    
-            var keysSorted = Object.keys(percentageMatchedObject).sort(function(a,b){
-                                return percentageMatchedObject[b]-percentageMatchedObject[a]});
+            percentageMatchedWithAllNumbers = imageDataMatcher.getPercentageMatched(binaryDataOfImageNumbers[i]);
+            matchedNumber = {};
+            secondMatched = {};    
+            allNumber = Object.keys(percentageMatchedWithAllNumbers).sort(function(a,b){
+                                return percentageMatchedWithAllNumbers[b] - percentageMatchedWithAllNumbers[a]});
 
-            var maxPercentage = percentageMatchedObject[keysSorted[0]];
-            matchedNumber[keysSorted[0]] = maxPercentage;
-            var secondMaxPercentage = percentageMatchedObject[keysSorted[1]];
-            alternativeMatched[keysSorted[1]] = secondMaxPercentage;
+            maxPercentage = percentageMatchedWithAllNumbers[allNumber[0]];
+            matchedNumber[allNumber[0]] = maxPercentage;
+            
+            secondMaxPercentage = percentageMatchedWithAllNumbers[allNumber[1]];
+            secondMatched[allNumber[1]] = secondMaxPercentage;
             console.log('matched number :',matchedNumber);
-            console.log('second matched :',alternativeMatched);
-            console.log('******');
+            console.log('second matched :',secondMatched);
 
             if(maxPercentage >= 70){
                 recognizedNumber.push(parseInt(Object.keys(matchedNumber)));

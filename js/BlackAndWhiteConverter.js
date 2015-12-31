@@ -1,11 +1,14 @@
 function BlackAndWhiteConverter() {
 
+	var thresholdValue = 200;
 
+	this.setThresholdValue = function(threshold){
+		thresholdValue = threshold;
+	}
 
 	//convets image into black and white
 	this.convertIntoBlackAndWhite = function(imageData){
 		var data = imageData.data;
-		var thresholdValue = 200;
 		var avgValue;
 
 		for(var i = 0; i < data.length; i += 4){

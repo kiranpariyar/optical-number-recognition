@@ -18,7 +18,7 @@ function ImageToBinaryConversion() {
         console.log('blackAndWhiteImageData :',blackAndWhiteImageData);
         ctx.putImageData(blackAndWhiteImageData,0,0);
         
-        var segmentedImageDataArray = segmentor.segmentImage(ctx,blackAndWhiteImageData);
+        var segmentedImageDataArray = segmentor.segmentImageToSingleCharacter(ctx,blackAndWhiteImageData);
         console.log('segmented image Data array :',segmentedImageDataArray);
 
         var filteredImageDataArray = heightByWidthRatioFilter.filter(segmentedImageDataArray);

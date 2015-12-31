@@ -1,8 +1,13 @@
-var uploadImage = document.getElementById('upload-image');
-uploadImage.addEventListener('change', loadImage, false);
-
 var mainCanvas = document.getElementById('main-canvas'); 
 var context = mainCanvas.getContext('2d');  
+var uploadImage = document.getElementById('upload-image');
+var recognizeNumber = document.getElementById('recognize');
+var drawImage = document.getElementById('draw-image');
+var drawFlag = false;
+
+uploadImage.addEventListener('change', loadImage, false);
+recognizeNumber.addEventListener('click', recognize, false);
+drawImage.addEventListener('click', drawWithHand, false);
 
 function loadImage() {
     
@@ -30,12 +35,7 @@ function loadImage() {
     }
 }
 
-var drawImage = document.getElementById('draw-image');
-drawImage.addEventListener('click', draw, false);
-var drawFlag = false;
-
-
-function draw(){
+function drawWithHand(){
     context.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
     context.fillStyle = 'white';
     context.fillRect(0,0,mainCanvas.width, mainCanvas.height);
@@ -61,9 +61,6 @@ function draw(){
         }
     }
 }
-
-var recognizeNumber = document.getElementById('recognize');
-recognizeNumber.addEventListener('click', recognize, false);
 
 function recognize() {
 
