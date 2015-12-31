@@ -41,9 +41,9 @@ body{
 .options{
     width: 12%;
     float: left;
-    min-height: 500px;
+    min-height: 350px;
     padding: 15px;
-    background: rgb(255, 245, 211);
+    background: #FFFFFF;
     border: 1px solid #CCCCCC;
 }
 
@@ -110,10 +110,10 @@ body{
 .info-div{
     width: 18%;
     /*border: 1px solid blue;*/
-    min-height: 500px;
+    min-height: 350px;
     float: right;
     padding: 15px;
-    background: rgb(255, 245, 211);
+    background: #FFFFFF;
     border: 1px solid #CCCCCC;
 }
 
