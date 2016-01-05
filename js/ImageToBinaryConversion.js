@@ -18,6 +18,9 @@ function ImageToBinaryConversion() {
         console.log('blackAndWhiteImageData :',blackAndWhiteImageData);
         ctx.putImageData(blackAndWhiteImageData,0,0);
         
+        // var mainContainer = document.getElementsByClassName('main-container')[0];
+        // mainContainer.appendChild(canvas);
+
         var segmentedImageDataArray = segmentor.segmentImageToSingleCharacter(ctx,blackAndWhiteImageData);
         console.log('segmented image Data array :',segmentedImageDataArray);
 

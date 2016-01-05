@@ -9,29 +9,45 @@ uploadImage.addEventListener('change', loadImage, false);
 recognizeNumber.addEventListener('click', recognize, false);
 drawImage.addEventListener('click', drawWithHand, false);
 
+
 function loadImage() {
-    
+        
+    var img = new Image(); 
     var imageWidth;
     var imageHeight;
-    var img = new Image(); 
     var imageFile = document.getElementById('upload-image').files[0];
     var url = window.URL || window.webkitURL;
     var src = url.createObjectURL(imageFile);
     img.src = src;
+    var imageData;
+    drawFlag = false;
 
     img.onload = function() {
-        console.log('image loaded');
+        console.log('image loaded');     
+        context.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
         imageWidth = img.naturalWidth;
         imageHeight = img.naturalHeight;        
-        console.log('imageWidth :',imageWidth);
-        console.log('imageHeight :',imageHeight);
-        context.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-        context.drawImage(img, 0, 0);
-        var imageData = context.getImageData(0,0,imageWidth,imageHeight);
-        var numberRecognizer = new NumberRecognizer();
-        var recognizedNumber = numberRecognizer.recognizeNumber(imageData);
-        var infoDiv = document.getElementsByClassName('recognized-number')[0];
-        infoDiv.innerHTML = recognizedNumber;
+        context.drawImage(img, 0, 0); 
+        imageData = context.getImageData(0,0,imageWidth,imageHeight);
+        
+        // checking if images size is greater than canvas width
+        if(imageHeight > mainCanvas.height || imageWidth > mainCanvas.width){ 
+
+            context.drawImage(img,0,0,imageWidth,imageHeight,0,0,mainCanvas.width,mainCanvas.height);
+            var newCanvas = document.createElement('canvas');
+            var newContext = newCanvas.getContext('2d');
+            newCanvas.width = imageWidth;
+            newCanvas.height = imageHeight;
+            newContext.drawImage(img,0,0);
+            imageData = newContext.getImageData(0,0,imageWidth,imageHeight);
+            recognize(imageData);
+
+        }else{
+
+            imageData = context.getImageData(0,0,imageWidth,imageHeight);
+            recognize(imageData);
+        }
+        
     }
 }
 
@@ -44,30 +60,42 @@ function drawWithHand(){
     console.log('called');
     var mousedown = false;
 
-    mainCanvas.onmousedown = function(){
+    mainCanvas.onmousedown = function() {
         mousedown = true;
     };
 
-    mainCanvas.onmouseup = function(){
+    mainCanvas.onmouseup = function() {
         mousedown = false;
     }
 
-    mainCanvas.onmousemove = function(){
+
+    var coordArray = [];
+    mainCanvas.onmousemove = function() {
         if(mousedown && drawFlag){  
             var x = event.pageX - mainCanvas.offsetLeft;
             var y = event.pageY - mainCanvas.offsetTop;
             context.fillStyle = 'black';
+            coordArray.push([x,y]);
             context.fillRect(x,y,15,15);
         }
     }
+
+    mainCanvas.onmouseout = function(){
+        mousedown = false;
+    }
 }
 
-function recognize() {
+
+function recognize(imageData) {
 
     var numberRecognizer = new NumberRecognizer();
-    var drawingImageData = context.getImageData(0,0,mainCanvas.width,mainCanvas.height);
-    var recognizedNumber = numberRecognizer.recognizeNumber(drawingImageData);
+    var recognizedNumber;
     var infoDiv = document.getElementsByClassName('recognized-number')[0];
-    infoDiv.innerHTML = recognizedNumber;
 
+    if(drawFlag == true){
+        imageData = context.getImageData(0,0,mainCanvas.width,mainCanvas.height);
+    }
+
+    recognizedNumber = numberRecognizer.recognizeNumber(imageData);
+    infoDiv.innerHTML = recognizedNumber;
 }

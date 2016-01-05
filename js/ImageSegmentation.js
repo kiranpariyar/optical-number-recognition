@@ -2,6 +2,7 @@ function ImageSegmentation() {
 
 	this.segmentImageToSingleCharacter = function(ctx,imageData) {
 		
+			// data is one dimentional array stores pixel information of image
 			var data = imageData.data;
 			var imageHeight = imageData.height;
 			var imageWidth = imageData.width;
@@ -16,6 +17,7 @@ function ImageSegmentation() {
             var segmentWidth;
             var segmentHeight;
 
+            // getting start and end column of all chracters in image
             columnCoordinateArray = getColumnCoordinates();
        		
        		// loop for segmenting given image into segmented number	

@@ -42,7 +42,7 @@ function NumberRecognizer() {
             recognizedNumber = ['unknown']
         }
 
-        console.log('recognizedNumber is :',recognizedNumber);
+        // console.log('recognizedNumber is :',recognizedNumber);
 		
         return recognizedNumber;	
 	}
