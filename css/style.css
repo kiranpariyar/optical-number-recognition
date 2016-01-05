@@ -53,10 +53,12 @@ body{
 .option-button{
     float: left;
     padding: 10px;
+    border: none;
 }
 
 .option-button input{
     padding: 8px;
+    height: 17px;
 }
 
 .option-button button{
@@ -99,13 +101,10 @@ body{
     background-color: #FFFFFF;
 }
 
-.process-info-heading{
-    padding: 10px 0px;
-}
-
-
-#process-info{
-    border: 1px solid #CCCCCC;
+.process-info{
+    width: 70%;
+    margin: auto;
+    padding: 10px;
     background-color: #FFFFFF;
 }
 
